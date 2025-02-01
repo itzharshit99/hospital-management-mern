@@ -54,3 +54,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+// home page starting from 52:31  someone complete this
