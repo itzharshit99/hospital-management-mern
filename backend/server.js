@@ -3,6 +3,7 @@ import cors from 'cors';
 import 'dotenv/config'
 import connectDB from './config/mongodb.js';
 import connectCloudinary from './config/cloudinary.js';
+import adminRouter from './routes/adminRoute.js';
 
 //app config
 const app = express();
@@ -20,6 +21,7 @@ app.use(cors());
 app.get("/",(req,res)=>{
   res.send("working");
 })
+app.use("/api/admin",adminRouter);  // api/admin/add-doctor
 
 app.listen(port,()=>{
   console.log("server is running on:",port);

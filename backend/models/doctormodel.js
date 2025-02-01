@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 const doctorSchema = new mongoose.Schema(
   {
     name: {
@@ -35,7 +35,7 @@ const doctorSchema = new mongoose.Schema(
     },
     available: {
       type: Boolean,
-      required: true,
+      default:true,
     },
     fees: {
       type: Number,
