@@ -2,6 +2,8 @@
 import validator from 'validator';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import userModel from '../models/usermodel.js'; // Add this import
+
 const registerUser=async(req,res)=>{
     try {
         const { name, email, password } = req.body;
