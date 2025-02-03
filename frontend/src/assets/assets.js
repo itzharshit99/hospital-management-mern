@@ -93,7 +93,7 @@ export const doctors = [
         speciality: 'General physician',
         degree: 'MBBS',
         experience: '4 Years',
-        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
+        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',   
         fees: 50,
         address: {
             line1: '17th Cross, Richmond',
@@ -297,3 +297,147 @@ export const doctors = [
         }
     },
 ]
+
+/*[
+    {
+        "_id": "doc1",
+        "name": "Dr. Rajesh Sharma",
+        "image": "doc1",
+        "speciality": "General Physician",
+        "degree": "MBBS",
+        "experience": "4 Years",
+        "about": "Dr. Rajesh Sharma is dedicated to providing comprehensive medical care, with a strong emphasis on preventive medicine, early diagnosis, and effective treatment strategies.",
+        "fees": 500,
+        "address": {
+            "line1": "12th Main Road, MG Road",
+            "line2": "Bangalore, Karnataka"
+        }
+    },
+    {
+        "_id": "doc2",
+        "name": "Dr. Priya Verma",
+        "image": "doc2",
+        "speciality": "Gynecologist",
+        "degree": "MBBS",
+        "experience": "3 Years",
+        "about": "Dr. Priya Verma specializes in women's health, ensuring early diagnosis and effective treatment for a wide range of gynecological conditions.",
+        "fees": 600,
+        "address": {
+            "line1": "25th Cross, JP Nagar",
+            "line2": "Bangalore, Karnataka"
+        }
+    },
+    {
+        "_id": "doc3",
+        "name": "Dr. Ananya Patel",
+        "image": "doc3",
+        "speciality": "Dermatologist",
+        "degree": "MBBS",
+        "experience": "1 Year",
+        "about": "Dr. Ananya Patel focuses on treating a variety of skin-related issues with modern dermatological techniques.",
+        "fees": 400,
+        "address": {
+            "line1": "Sector 15, Vashi",
+            "line2": "Navi Mumbai, Maharashtra"
+        }
+    },
+    {
+        "_id": "doc4",
+        "name": "Dr. Akash Mehta",
+        "image": "doc4",
+        "speciality": "Pediatrician",
+        "degree": "MBBS",
+        "experience": "2 Years",
+        "about": "Dr. Akash Mehta is committed to providing the best healthcare for children, ensuring their growth and development are on track.",
+        "fees": 450,
+        "address": {
+            "line1": "Park Street, New Market",
+            "line2": "Kolkata, West Bengal"
+        }
+    },
+    {
+        "_id": "doc5",
+        "name": "Dr. Rohan Gupta",
+        "image": "doc5",
+        "speciality": "Neurologist",
+        "degree": "MBBS",
+        "experience": "4 Years",
+        "about": "Dr. Rohan Gupta specializes in treating neurological disorders with a patient-centric approach.",
+        "fees": 700,
+        "address": {
+            "line1": "Ashok Nagar, Near Civil Lines",
+            "line2": "Delhi"
+        }
+    },
+    {
+        "_id": "doc6",
+        "name": "Dr. Kavita Nair",
+        "image": "doc6",
+        "speciality": "Neurologist",
+        "degree": "MBBS",
+        "experience": "4 Years",
+        "about": "Dr. Kavita Nair provides top-tier care in neurology, treating a range of neurological conditions with expertise.",
+        "fees": 700,
+        "address": {
+            "line1": "Koramangala, 5th Block",
+            "line2": "Bangalore, Karnataka"
+        }
+    },
+    {
+        "_id": "doc7",
+        "name": "Dr. Suresh Iyer",
+        "image": "doc7",
+        "speciality": "General Physician",
+        "degree": "MBBS",
+        "experience": "4 Years",
+        "about": "Dr. Suresh Iyer emphasizes preventive healthcare and early diagnosis to ensure better health outcomes.",
+        "fees": 500,
+        "address": {
+            "line1": "Anna Salai, Teynampet",
+            "line2": "Chennai, Tamil Nadu"
+        }
+    },
+    {
+        "_id": "doc8",
+        "name": "Dr. Sneha Desai",
+        "image": "doc8",
+        "speciality": "Gynecologist",
+        "degree": "MBBS",
+        "experience": "3 Years",
+        "about": "Dr. Sneha Desai ensures comprehensive gynecological care, focusing on maternal health and women's wellness.",
+        "fees": 600,
+        "address": {
+            "line1": "Law Garden, Ellisbridge",
+            "line2": "Ahmedabad, Gujarat"
+        }
+    },
+    {
+        "_id": "doc9",
+        "name": "Dr. Manish Kapoor",
+        "image": "doc9",
+        "speciality": "Dermatologist",
+        "degree": "MBBS",
+        "experience": "1 Year",
+        "about": "Dr. Manish Kapoor provides expert treatment for skin-related conditions, including allergies and cosmetic dermatology.",
+        "fees": 400,
+        "address": {
+            "line1": "Model Town, Ludhiana",
+            "line2": "Punjab"
+        }
+    },
+    {
+        "_id": "doc10",
+        "name": "Dr. Varun Rao",
+        "image": "doc10",
+        "speciality": "Pediatrician",
+        "degree": "MBBS",
+        "experience": "2 Years",
+        "about": "Dr. Varun Rao specializes in child healthcare, providing expert pediatric services to ensure overall well-being.",
+        "fees": 450,
+        "address": {
+            "line1": "Gandhi Nagar, Adyar",
+            "line2": "Chennai, Tamil Nadu"
+        }
+    }
+]
+ */
