@@ -1,37 +1,54 @@
-import React, { useContext ,useState,useEffect} from 'react'
-import { useParams ,useNavigate} from 'react-router-dom';
-import {AppContext} from "../context/AppContext"
+import React, { useContext, useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
 
 const Doctors = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const { speciality } = useParams();
   const [filterDoc, setFilterDoc] = useState([]);
-  const {doctors}=useContext(AppContext);
+  const { doctors } = useContext(AppContext);
+
   const applyFilter = () => {
-    if(speciality){
-      setFilterDoc(doctors.filter(doc=>doc.speciality===speciality))
-    }
-    else{
+    if (speciality) {
+      setFilterDoc(doctors.filter((doc) => doc.speciality === speciality));
+    } else {
       setFilterDoc(doctors);
     }
-  }
+  };
 
-  useEffect(()=>{
-    applyFilter()
+  useEffect(() => {
+    applyFilter();
+  }, [doctors, speciality]);
 
-  },[doctors,speciality])
-  //console.log(speciality);
+  const specialities = [
+    "General physician",
+    "Gynecologist",
+    "Dermatologist",
+    "Pediatricians",
+    "Neurologist",
+    "Gastroenterologist",
+  ];
+
   return (
     <div>
       <p className="text-gray-600">Browse through the doctors specialist</p>
       <div className="flex flex-col sm:flex-row items-start gap-5 mt-5">
         <div className="flex flex-col gap-4 text-sm text-gray-600">
-          <p  className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer`}>Generalphysician</p>
-          <p className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer`}>Gynecologist</p>
-          <p className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer`}>Dermatologist</p>
-          <p className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer`}>Pediatricians</p>
-          <p className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer`}>Neurologist</p>
-          <p className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer`}>Gastroenterologist</p>
+          {specialities.map((spec, index) => (
+            <p
+              key={index}
+              onClick={() =>
+                speciality === spec
+                  ? navigate("/doctors")
+                  : navigate(`/doctors/${spec}`)
+              }
+              className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
+                speciality === spec ? "bg-indigo-100 text-black" : ""
+              }`}
+            >
+              {spec}
+            </p>
+          ))}
         </div>
         <div
           className="w-full grid gap-4 gap-y-6"
@@ -60,6 +77,6 @@ const Doctors = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Doctors
+export default Doctors;

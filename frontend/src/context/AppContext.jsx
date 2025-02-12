@@ -5,13 +5,12 @@ import { useEffect } from "react";
 import {toast} from 'react-toastify'
 export const AppContext = createContext()
 const AppContextProvider = (props)=>{
-  const currencySymbol = ''
+  const currencySymbol = '₹'
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [doctors,setDoctors] = useState([])
   const value = {
     doctors,
     currencySymbol
-    
   }
   const getDoctorsData = async ()=>{
     try {
