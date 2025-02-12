@@ -6,9 +6,10 @@ import {doctors} from '../assets/assets'
 //import {toast} from 'react-toastify'
 export const AppContext = createContext()
 const AppContextProvider = (props)=>{
+  const currencySymbol='$'
   
   const value = {
-    doctors,
+    doctors,currencySymbol
     
   }
   
