@@ -7,16 +7,40 @@ const Appointments = () => {
   const { docId } = useParams();
   const { doctors,currencySymbol } = useContext(AppContext);
   const [docInfo, setDocInfo] = useState(null);
+  const [docSlots, setDocSlots] = useState([]);
+  const [slotIndex, setSlotIndex] = useState(0);
+  const [slotTime, setSlotTime] = useState('');
 
   const fetchDocInfo = async () => {
     const docInfo = doctors.find((doc) => doc._id === docId);
     setDocInfo(docInfo);
-    console.log(docInfo);
+    //console.log(docInfo);
   };
+
+  const getAvailableSlots = async () => {
+    setDocSlots([])
+
+    let today = new Date();
+    for (let i = 0; i < 7; i++){
+      let currentDate = new Date(today);
+      currentDate.setDate(today.getDate() + i);
+      let endTime=new Date()
+      endTime.setDate(today.getDate() + 1)
+      endTime.setHours(21,0,0,0)
+      if(today.getDate()===currentDate.getDate()){
+        //currentDate.setHours
+    }
+    
+  }
 
   useEffect(() => {
     fetchDocInfo();
   }, [doctors, docId]);
+
+  useEffect(()=>{
+    getAvailableSlots()
+
+  },[docInfo])
 
   return docInfo &&(
     <div >
