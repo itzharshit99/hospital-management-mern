@@ -7,6 +7,7 @@ const RelatedDoctors = ({ speciality, docId }) => {
   const navigate = useNavigate();
     const [relDoc, setRelDocs] = useState([]);
   const [visibleDocs, setVisibleDocs] = useState(5);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (doctors.length > 0 && speciality) {

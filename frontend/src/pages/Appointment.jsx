@@ -20,7 +20,6 @@ const Appointment = () => {
 
   const getAvailableSlots = async () => {
     setDocSlots([]);
-
     let today = new Date();
     for (let i = 0; i < 7; i++) {
       let currentDate = new Date(today);
@@ -114,7 +113,7 @@ const Appointment = () => {
                   onClick={() => setSlotIndex(index)}
                   className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${
                     slotIndex === index
-                      ? "bg-blue-500 text-white"
+                      ? "bg-[#5f6FFF] text-white"
                       : "border border-gray-600"
                   }`}
                   key={index}
@@ -131,7 +130,7 @@ const Appointment = () => {
                   onClick={() => (setSlotTime(item.time))}
                   className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${
                     item.time === slotTime
-                      ? "bg-blue-500 text-white"
+                      ? "bg-[#5f6FFF] text-white"
                       : " border border-gray-300"
                   }`}
                   key={index}
@@ -140,9 +139,9 @@ const Appointment = () => {
                 </p>
               ))}
           </div>
-          <button className="bg-blue-500 text-white text-sm font-light px-14 py-3 rounded-full my-6">Book an Appointment</button>
+          <button className="bg-[#5f6FFF] text-white text-sm font-light px-14 py-3 rounded-full my-6 cursor-pointer">Book an Appointment</button>
         </div>
-        <RelatedDoctors docId={docId}  speciality={docInfo.speciallity}/>
+        <RelatedDoctors docId={docId}  speciality={docInfo.speciality}/>
       </div>
     )
   );

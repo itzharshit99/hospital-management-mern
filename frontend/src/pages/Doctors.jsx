@@ -34,7 +34,7 @@ const Doctors = () => {
       <p className="text-gray-600">Browse through the doctors specialist</p>
       <div className="flex flex-col sm:flex-row items-start gap-5 mt-5">
         <div className="flex flex-col gap-4 text-sm text-gray-600">
-          {specialities.map((spec, index) => (
+          {specialities .map((spec, index) => (
             <p
               key={index}
               onClick={() =>
