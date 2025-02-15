@@ -4,7 +4,7 @@ import { AppContext } from "../context/AppContext";
 
 const RelatedDoctors = ({ speciality, docId }) => {
   const { doctors } = useContext(AppContext);
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
     const [relDoc, setRelDocs] = useState([]);
   const [visibleDocs, setVisibleDocs] = useState(5);
   const navigate = useNavigate();
