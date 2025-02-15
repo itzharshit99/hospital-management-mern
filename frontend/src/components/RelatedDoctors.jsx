@@ -4,7 +4,8 @@ import { AppContext } from "../context/AppContext";
 
 const RelatedDoctors = ({ speciality, docId }) => {
   const { doctors } = useContext(AppContext);
-  const [relDoc, setRelDocs] = useState([]);
+  const navigate = useNavigate();
+    const [relDoc, setRelDocs] = useState([]);
   const [visibleDocs, setVisibleDocs] = useState(5);
 
   useEffect(() => {
@@ -12,9 +13,11 @@ const RelatedDoctors = ({ speciality, docId }) => {
       const doctorsData = doctors.filter(
         (doc) => doc.speciality === speciality && doc._id !== docId
       );
+      console.log(setRelDocs);
       setRelDocs(doctorsData);
     }
   }, [doctors, speciality, docId]);
+  
 
   const loadMoreDoctors = () => {
     setVisibleDocs((prevVisibleDocs) => prevVisibleDocs + 5);
@@ -32,7 +35,10 @@ const RelatedDoctors = ({ speciality, docId }) => {
       >
         {relDoc.slice(0, visibleDocs).map((item, index) => (
           <div
-            onClick={() => { navigate(`/appointment/${item._id}`); scrollTo(0, 0) }}
+            onClick={() => {
+              navigate(`/appointment/${item._id}`);
+              scrollTo(0, 0);
+            }}
             className="border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all divide-purple-500"
             key={index}
           >
@@ -48,14 +54,15 @@ const RelatedDoctors = ({ speciality, docId }) => {
           </div>
         ))}
       </div>
-      {visibleDocs < relDoc.length && (
-        <button
-          onClick={loadMoreDoctors}
-          className="bg-blue-50 text-gray-600 px-12 py-3 rounded-full mt-10 cursor-pointer"
-        >
-          more
-        </button>
-      )}
+      <button
+        onClick={() => {
+          navigate("/doctors");
+          scrollTo(0, 0);
+        }}
+        className="bg-blue-50 text-gray-600 px-12 py-3 rounded-full mt-10 cursor-pointer"
+      >
+        more
+      </button>
     </div>
   );
 };
