@@ -1,11 +1,24 @@
-import React, { useContext } from "react";
-//import { doctors } from "../assets/assets";
-import {useNavigate} from 'react-router-dom'
+import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 
-const TopDoctors = () => {
-  const navigate = useNavigate();
-  const {doctors}=useContext(AppContext);
+const RelatedDoctors = ({ speciality, docId }) => {
+  const { doctors } = useContext(AppContext);
+  const [relDoc, setRelDocs] = useState([]);
+  const [visibleDocs, setVisibleDocs] = useState(5);
+
+  useEffect(() => {
+    if (doctors.length > 0 && speciality) {
+      const doctorsData = doctors.filter(
+        (doc) => doc.speciality === speciality && doc._id !== docId
+      );
+      setRelDocs(doctorsData);
+    }
+  }, [doctors, speciality, docId]);
+
+  const loadMoreDoctors = () => {
+    setVisibleDocs((prevVisibleDocs) => prevVisibleDocs + 5);
+  };
 
   return (
     <div className="flex flex-col items-center gap-4 my-16 text-gray-900 md:mx-10">
@@ -17,12 +30,9 @@ const TopDoctors = () => {
         className="w-full grid gap-4 pt-5 gap-y-6 px-3 sm:px-0"
         style={{ gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))" }}
       >
-        {doctors.slice(0, 10).map((item, index) => (
+        {relDoc.slice(0, visibleDocs).map((item, index) => (
           <div
-            onClick={() => {
-              navigate(`/appointment/${item._id}`);
-              scrollTo(0, 0);
-            }}
+            onClick={() => { navigate(`/appointment/${item._id}`); scrollTo(0, 0) }}
             className="border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all divide-purple-500"
             key={index}
           >
@@ -38,17 +48,16 @@ const TopDoctors = () => {
           </div>
         ))}
       </div>
-      <button
-        onClick={() => {
-          navigate("/doctors");
-          scrollTo(0, 0);
-        }}
-        className="bg-blue-50 text-gray-600 px-12 py-3 rounded-full mt-10 cursor-pointer"
-      >
-        more
-      </button>
+      {visibleDocs < relDoc.length && (
+        <button
+          onClick={loadMoreDoctors}
+          className="bg-blue-50 text-gray-600 px-12 py-3 rounded-full mt-10 cursor-pointer"
+        >
+          more
+        </button>
+      )}
     </div>
   );
 };
 
-export default TopDoctors;
+export default RelatedDoctors;
