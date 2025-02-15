@@ -145,7 +145,7 @@ const Doctors = () => {
           ))}
           <button
             className={`py-1 px-3 border rounded text-sm transition-all sm:hidden ${
-              showFilter ? "bg-blue-500 text-white" : ""
+              showFilter ? "bg-[#5f6FFF] text-white" : ""
             }`}
             onClick={() => setShowFilter((prev) => !prev)}
           >
