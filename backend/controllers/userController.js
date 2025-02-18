@@ -72,6 +72,14 @@ const getProfile = async (req,res)=>{
 
 }
 
+const updateProfile = async (req,res)=>{
+    try {
+        
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message });
+    }
+}
 
 
 
