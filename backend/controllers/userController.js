@@ -6,7 +6,7 @@ import userModel from '../models/usermodel.js'; // Add this import
 import {v2 as cloudinary} from 'cloudinary'
 import doctorModel from '../models/doctormodel.js';
 import appointmentModel from '../models/appointments.model.js';
-
+import razorpay from 'razorpay';
 const registerUser=async(req,res)=>{
     try {
         const { name, email, password } = req.body;
@@ -163,5 +163,13 @@ const cancleAppointment = async (req,res)=>{
         console.log(error);
         res.json({ success: false, message: error.message });
     }
+}
+const razorpayInstance = new razorpay({
+    key_id:process.env.key_id,
+    key_secret:process.env.key_secret
+})
+
+const paymentRazorpay = async (req,res)=>{
+
 }
 export {registerUser,loginUser,getProfile,updateProfile,bookAppointment,listAppointment,cancleAppointment};
