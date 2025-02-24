@@ -4,20 +4,13 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 export const AdminContext = createContext();
-/*************  ✨ Codeium Command ⭐  *************/
-/**
- * Provides the context for the admin dashboard.
- * The context includes the auth token, doctors list, dashboard data, appointments list, and functions to get all doctors, change doctor availability, get dashboard data, get all appointments, and cancel an appointment.
- * @param {Object} props The props to pass to the provider.
- * @returns {React.ReactElement} The provider component.
- */
-/******  ba2f4eb2-f550-44ee-b0b0-c458207bbd61  *******/
+
 const AdminContextProvider = (props) => {
   const [aToken, setAToken] = useState(
     localStorage.getItem("aToken") ? localStorage.getItem("aToken") : ""
   );
   const [doctors, setDoctors] = useState([]);
-  const [dashdata, setDashData] = useState(false);
+  const [dashData, setDashData] = useState({});
   const [appointments, setAppointments] = useState([]);
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -59,7 +52,7 @@ const AdminContextProvider = (props) => {
 
   const getDashData = async () => {
     try {
-      const { data } = await axios.get(backendUrl + "/api/admin/dashboard", {
+      const { data } = await axios.get(`${backendUrl}/api/admin/dashboard`, {
         headers: { aToken },
       });
       if (data.success) {
@@ -116,7 +109,7 @@ const AdminContextProvider = (props) => {
     doctors,
     getAllDoctors,
     changeAvailability,
-    dashdata,
+    dashData,
     getDashData,
     appointments,
     setAppointments,
