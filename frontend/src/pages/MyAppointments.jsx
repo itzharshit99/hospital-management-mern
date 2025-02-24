@@ -12,7 +12,7 @@ const MyAppointments = () => {
     "January", "February", "March", "April", "May", "June", 
     "July", "August", "September", "October", "November", "December"
   ]
-  const slotDateFormate = (slotDate)=>{
+  const slotDateFormat = (slotDate)=>{
     const dateArray = slotDate.split('_');
     return dateArray[0] + " " + months[Number(dateArray[1])]+  " " + dateArray[2]
   }

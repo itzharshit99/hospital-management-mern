@@ -4,7 +4,7 @@ import { AdminContext } from '../../context/AdminContext.jsx'
 import { useEffect } from 'react';
 
 const Dashboard = () => {
-  const {aToken,getDashData,dashData} = useContext(AdminContext); // cancelAppointment
+  const {aToken,getDashData,cancelAppointment,dashData} = useContext(AdminContext); // cancelAppointment
   useEffect(()=>{
     if(aToken){
       getDashData()
