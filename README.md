@@ -3,4 +3,4 @@ to start backend server
 to start frontend
 # npm run dev
 to start admin panel
-# npm run dev
+# npm run  dev ..
