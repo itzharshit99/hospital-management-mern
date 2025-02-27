@@ -5,6 +5,8 @@ import doctorModel from "../models/doctormodel.js";
 import jwt from 'jsonwebtoken';
 import userModel from "../models/usermodel.js";
 import appointmentModel from "../models/appointmentModel.js";
+import MedicalCamp from "../models/campModel.js";
+import sendMedicalCampEmails from "../email/user.email.js";
 const addDoctor = async (req, res) => {
   try {
     const {
@@ -149,6 +151,25 @@ const appointmentCancel = async (req,res)=>{
 
 
 
+const createMedicalCamp = async (req, res) => {
+  try {
+      const { campName, date, location, details } = req.body;
+
+      const newCamp = await MedicalCamp.create({ campName, date, location, details });
+
+      const users = await userModel.find({}, "email");
+      const emailList = users.map(user => user.email);
+      await sendMedicalCampEmails(emailList, campName, date, location, details);
+
+      res.json({ success: true, message: "Medical camp created and emails sent successfully", camp: newCamp });
+  } catch (error) {
+      console.log(error);
+      res.json({ success: false, message: error.message });
+  }
+};
 
 
-export { addDoctor,loginAdmin,allDoctors,adminDashboard ,appointmentsAdmin,appointmentCancel};
+
+
+
+export { addDoctor,loginAdmin,allDoctors,adminDashboard ,appointmentsAdmin,appointmentCancel,createMedicalCamp};
