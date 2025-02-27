@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 import userModel from '../models/usermodel.js';
 import dotenv from 'dotenv';
 dotenv.config();
-const sendMedicalCampEmails = async (emailList, campName, date, location, details) => {
+const sendMedicalCampEmails = async (emailList, campName, date, location, details,time) => {
   try {
       // Set up transporter
       const transporter = nodemailer.createTransport({
@@ -35,6 +35,10 @@ const sendMedicalCampEmails = async (emailList, campName, date, location, detail
               <tr>
                   <td style="padding: 8px; border: 1px solid #ddd;"><strong>ℹ️ Details:</strong></td>
                   <td style="padding: 8px; border: 1px solid #ddd;">${details}</td>
+              </tr>
+              <tr>
+                  <td style="padding: 8px; border: 1px solid #ddd;"><strong>🕧 Time:</strong></td>
+                  <td style="padding: 8px; border: 1px solid #ddd;">${time}</td>
               </tr>
           </table>
           <p style="margin-top: 20px;">We look forward to seeing you there! Feel free to reach out for any queries.</p>

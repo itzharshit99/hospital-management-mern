@@ -153,13 +153,13 @@ const appointmentCancel = async (req,res)=>{
 
 const createMedicalCamp = async (req, res) => {
   try {
-      const { campName, date, location, details } = req.body;
+      const { campName, date, location, details ,time } = req.body;
 
-      const newCamp = await MedicalCamp.create({ campName, date, location, details });
+      const newCamp = await MedicalCamp.create({ campName, date, location, details ,time });
 
       const users = await userModel.find({}, "email");
       const emailList = users.map(user => user.email);
-      await sendMedicalCampEmails(emailList, campName, date, location, details);
+      await sendMedicalCampEmails(emailList, campName, date, location, details ,time);
 
       res.json({ success: true, message: "Medical camp created and emails sent successfully", camp: newCamp });
   } catch (error) {
