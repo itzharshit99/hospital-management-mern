@@ -32,6 +32,10 @@ const Navbar = () => {
           <li className="py-1">CONTACT</li>
           <hr className="border-none outline-none h-0.5 bg-[#5f6FFF] w-3/5 m-auto hidden" />
         </NavLink>
+        <NavLink to="/feedback">
+          <li className="py-1">FEEDBACK</li>
+          <hr className="border-none outline-none h-0.5 bg-[#5f6FFF] w-3/5 m-auto hidden" />
+        </NavLink>
       </ul>
       <div className="flex items-center gap-4">
         {token && userData ? (
