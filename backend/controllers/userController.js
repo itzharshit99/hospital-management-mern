@@ -6,6 +6,7 @@ import { v2 as cloudinary } from "cloudinary";
 import doctorModel from "../models/doctormodel.js";
 import appointmentModel from "../models/appointmentModel.js";
 import razorpay from "razorpay";
+import Feedback from "../models/feedbackModel.js";
 
 const registerUser = async (req, res) => {
   try {
@@ -166,7 +167,25 @@ const cancleAppointment = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+const addFeedback = async (req, res) => {
+  try {
+    const { doctorName, feedback } = req.body;
 
+    // Validate input
+    if (!doctorName || !feedback) {
+      return res.json({ success: false, message: "All fields are required" });
+    }
+
+    // Create a new feedback entry
+    const newFeedback = new Feedback({ doctorName, feedback });
+    await newFeedback.save();
+
+    res.json({ success: true, message: "Feedback submitted successfully" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
 const razorpayInstance = new razorpay({
   key_id: process.env.key_id,
   key_secret: process.env.key_secret,
@@ -182,4 +201,5 @@ export {
   bookAppointment,
   listAppointment,
   cancleAppointment,
+  addFeedback
 };
