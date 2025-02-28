@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import { toast } from "react-toastify";
-
+import { useNavigate } from "react-router-dom";
 const MyAppointments = () => {
   const { backendUrl, token, getDoctorsData } = useContext(AppContext);
   const [appointments, setAppointments] = useState([]);
@@ -11,6 +11,7 @@ const MyAppointments = () => {
     "", "January", "February", "March", "April", "May", "June", 
     "July", "August", "September", "October", "November", "December"
   ];
+  const navigate = useNavigate();
 
   // Function to format the slot date
   const slotDateFormat = (slotDate) => {
@@ -87,7 +88,8 @@ const MyAppointments = () => {
             </div>
             <div className="flex flex-col gap-2 justify-end">
               {!item.cancelled && (
-                <button className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border hover:bg-[#5f6FFF] hover:text-white transition-all duration-300">
+                <button className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border hover:bg-[#5f6FFF] hover:text-white transition-all duration-300" onClick={()=> navigate("/payments")}>
+                  
                   Pay Online
                 </button>
               )}
