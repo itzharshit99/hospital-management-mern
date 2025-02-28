@@ -8,6 +8,7 @@ const AppContextProvider = (props)=>{
   const currencySymbol = '₹'
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [doctors,setDoctors] = useState([])
+  const [medicalCamps, setMedicalCamps] = useState([]);
   const [token,setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):false);
   const [userData,setuserData] = useState(false)
   
@@ -41,13 +42,27 @@ const AppContextProvider = (props)=>{
       toast.error(error.message)
     }
   }
-  
+  const getMedicalCamps = async () => {
+    try {
+      const { data } = await axios.get(backendUrl + "/api/user/get-camps",{headers:{token}});
+      console.log(data);
+      if (data.success) {
+        setMedicalCamps(data.camps);
+      } else {
+        toast.error("Failed to load medical camps");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
 
 
   const value = {
     doctors,getDoctorsData,
     currencySymbol,token,setToken,
-    backendUrl,userData,setuserData,loadUserProfileData
+    backendUrl,userData,setuserData,loadUserProfileData,
+    medicalCamps,getMedicalCamps
   }
   useEffect(()=>{
     getDoctorsData()
@@ -59,6 +74,10 @@ const AppContextProvider = (props)=>{
       setuserData(false)
     }
   },[token])
+
+  useEffect(() => {
+    getMedicalCamps();
+  }, []);
   
   
   return (

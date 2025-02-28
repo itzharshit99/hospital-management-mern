@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/Footer";
 import Payments from "./pages/Payments";
 import Feedback from "./pages/Feedback";
+import HealthCamps from "./pages/HealthCamps";
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/appointment/:docId" element={<Appointments />} />
         <Route path="/payments" element={<Payments/>} />
         <Route path="/feedback" element={<Feedback/>} />
+        <Route path="/health-camps" element={<HealthCamps/>} />
       </Routes>
       <Footer />
     </div>

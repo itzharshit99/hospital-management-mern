@@ -167,9 +167,18 @@ const createMedicalCamp = async (req, res) => {
       res.json({ success: false, message: error.message });
   }
 };
+const getMedicalCamps = async (req, res) => {
+  try {
+    const camps = await MedicalCamp.find();
+    res.json({ success: true, camps });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
 
 
 
 
 
-export { addDoctor,loginAdmin,allDoctors,adminDashboard ,appointmentsAdmin,appointmentCancel,createMedicalCamp};
+export { addDoctor,loginAdmin,allDoctors,adminDashboard ,appointmentsAdmin,appointmentCancel,createMedicalCamp,getMedicalCamps};
