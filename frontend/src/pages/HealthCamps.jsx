@@ -34,7 +34,7 @@ const HealthCamps = () => {
                   <FaClock className="mr-2 text-green-500" /> 
                   <strong className="mr-1">Time:</strong> {camp.time}
                 </p>
-                <p className="flex items-center">
+                <p className="flex">
                   <FaMapMarkerAlt className="mr-2 text-red-500" /> 
                   <strong className="mr-1">Location:</strong> {camp.location}
                 </p>
