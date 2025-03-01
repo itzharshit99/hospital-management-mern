@@ -166,7 +166,7 @@ const Doctors = () => {
               className="border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all divide-purple-500"
               key={index}
             >
-              <img className="bg-blue-50" src={item.image} alt={item.name} />
+              <img className="bg-blue-50 w-full h-80" src={item.image} alt={item.name} />
               <div className="p-4">
                 {!item.available && <div className="flex items-center gap-2 text-sm text-center text-red-500">
                   <p className="w-2 h-2 bg-red-500 rounded-full"></p>
