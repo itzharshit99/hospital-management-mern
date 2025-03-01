@@ -60,4 +60,38 @@ const appointmentsDoctor = async(req,res)=>{
   }
 
 }
-export {changeAvailability,doctorList,loginDoctor,appointmentsDoctor}
+
+const appointmentComplete = async(req,res)=>{
+  try {
+    const {docId,appointmentId} = req.body;
+    const appointmentData = await appointmentModel.findById(appointmentId);
+    if(appointmentData && appointmentData.docId===docId){
+      await appointmentModel.findByIdAndUpdate(appointmentId,{isCompleted:true})
+      return res.json({success:true,message:'appointment completed'})
+    }
+    else{
+      return res.json({success:false,message:"marked failed"});
+    }
+  } catch (error) {
+    console.log(error)
+    res.json({success:false,message:error.message})
+  }
+}
+
+const appointmentCancel = async(req,res)=>{
+  try {
+    const {docId,appointmentId} = req.body;
+    const appointmentData = await appointmentModel.findById(appointmentId);
+    if(appointmentData && appointmentData.docId===docId){
+      await appointmentModel.findByIdAndUpdate(appointmentId,{cancelled:true})
+      return res.json({success:true,message:'appointment cancelled'})
+    }
+    else{
+      return res.json({success:false,message:"cancellation failed"});
+    }
+  } catch (error) {
+    console.log(error)
+    res.json({success:false,message:error.message})
+  }
+}
+export {changeAvailability,doctorList,loginDoctor,appointmentsDoctor,appointmentCancel,appointmentComplete}
