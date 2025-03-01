@@ -62,7 +62,7 @@ const Navbar = () => {
             Create Account
           </button>
         )}
-        <img onClick={()=>setShowMenu(true)} className="w-6 md:hidden" src={assets.menu_icon} alt=""></img>4
+        <img onClick={()=>setShowMenu(true)} className="w-6 md:hidden" src={assets.menu_icon} alt=""></img>
         <div className={`${showMenu ? 'fixed w-full' : 'h-0 w-0'} md:hidden right-0 top-0 bottom-0 z-20 overflow-hidden bg-white transition-all`}>
 
           <div className="flex items-center justify-between px-5 py-6">
@@ -74,6 +74,8 @@ const Navbar = () => {
             <NavLink  onClick={()=>setShowMenu(false)} to='/doctors'><p>ALL DOCTORS</p></NavLink>
             <NavLink  onClick={()=>setShowMenu(false)} to='/about'><p>ABOUT</p></NavLink>
             <NavLink  onClick={()=>setShowMenu(false)} to='/contact'><p>CONTACT</p></NavLink>
+            <NavLink  onClick={()=>setShowMenu(false)} to='/feedback'><p>FEEDBACK</p></NavLink>
+            <NavLink  onClick={()=>setShowMenu(false)} to='/health-camps'><p>HEALTH CAMPS</p></NavLink>
           </ul>
         </div>
       </div>
