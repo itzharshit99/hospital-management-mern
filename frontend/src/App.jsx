@@ -15,6 +15,7 @@ import Footer from "./components/Footer";
 import Payments from "./pages/Payments";
 import Feedback from "./pages/Feedback";
 import HealthCamps from "./pages/HealthCamps";
+import UpcomingCall from "./pages/UpcomingCall";
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
         <Route path="/payments" element={<Payments/>} />
         <Route path="/feedback" element={<Feedback/>} />
         <Route path="/health-camps" element={<HealthCamps/>} />
+        <Route path="/upcoming-call" element={<UpcomingCall/>} />
       </Routes>
       <Footer />
     </div>

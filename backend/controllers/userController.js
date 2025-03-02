@@ -7,6 +7,7 @@ import doctorModel from "../models/doctormodel.js";
 import appointmentModel from "../models/appointmentModel.js";
 import razorpay from "razorpay";
 import Feedback from "../models/feedbackModel.js";
+import Meeting from "../models/meetingModel.js";
 
 const registerUser = async (req, res) => {
   try {
@@ -132,11 +133,40 @@ const bookAppointment = async (req, res) => {
   }
 };
 
+// const listAppointment = async (req, res) => {
+//   try {
+//     const { userId } = req.body;
+//     const appointments = await appointmentModel.find({ userId });
+//     res.json({ success: true, appointments });
+//   } catch (error) {
+//     console.log(error);
+//     res.json({ success: false, message: error.message });
+//   }
+// };
 const listAppointment = async (req, res) => {
   try {
     const { userId } = req.body;
+    
+    // Fetch all appointments for the given user
     const appointments = await appointmentModel.find({ userId });
-    res.json({ success: true, appointments });
+
+    // Fetch meeting links for each appointment
+    const appointmentsWithMeetings = await Promise.all(
+      appointments.map(async (appointment) => {
+        const meeting = await Meeting.findOne({
+          docId: appointment.docId, 
+          userId: appointment.userId,
+        });
+
+        return {
+          ...appointment._doc, 
+          meetingLink: meeting ? meeting.meetingLink : null, // Attach meeting link
+          meetingStatus: meeting ? meeting.status : "Not Scheduled",
+        };
+      })
+    );
+
+    res.json({ success: true, appointments: appointmentsWithMeetings });
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });

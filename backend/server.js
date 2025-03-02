@@ -6,6 +6,7 @@ import connectCloudinary from './config/cloudinary.js';
 import adminRouter from './routes/adminRoute.js';
 import doctorRouter from './routes/doctorRoute.js';
 import userRouter from './routes/userRoute.js';
+import meetingRouter from './routes/meetingRoute.js';
 
 //app config
 const app = express();
@@ -26,6 +27,7 @@ app.get("/",(req,res)=>{
 app.use("/api/admin",adminRouter);  // api/admin/add-doctor
 app.use("/api/doctor",doctorRouter);  
 app.use("/api/user", userRouter);  // api/user/register
+app.use("/api/meeting",meetingRouter)
 
 app.listen(port,()=>{
   console.log("server is running on:",port);

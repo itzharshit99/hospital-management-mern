@@ -50,6 +50,7 @@ const Navbar = () => {
               <div className="min-w-48 bg-stone-100 roundedn flex flex-col gap-4 p-4">
                 <p onClick={()=> navigate('my-profile')} className="hover:text-black cursor-pointer">My Profile</p>
                 <p onClick={()=> navigate('my-appointments')} className="hover:text-black cursor-pointer">My Appointments</p>
+                <p onClick={()=> navigate('upcoming-call')} className="hover:text-black cursor-pointer">Start Video Call</p>
                 <p onClick={logout} className="hover:text-black cursor-pointer">Logout</p>
               </div>
             </div>
