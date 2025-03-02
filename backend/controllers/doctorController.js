@@ -2,6 +2,7 @@ import doctorModel from "../models/doctormodel.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import appointmentModel from "../models/appointmentModel.js";
+import prescriptionModel from "../models/prescriptionModel.js";
 const changeAvailability = async (req,res)=>{
   try {
     const {docId} = req.body;
@@ -94,4 +95,19 @@ const appointmentCancel = async(req,res)=>{
     res.json({success:false,message:error.message})
   }
 }
-export {changeAvailability,doctorList,loginDoctor,appointmentsDoctor,appointmentCancel,appointmentComplete}
+const prescription = async(req,res)=>{
+  try {
+    const {docId,userId,prescriptionText} = req.body;
+    const prescription  = new prescriptionModel({
+      docId,
+      userId,
+      prescriptionText
+
+    })
+    await prescription.save();
+    res.status(201).json({ message: "Prescription sent successfully", prescription });
+  } catch (error) {
+    res.status(500).json({ message: "Error saving prescription", error });
+  }
+}
+export {changeAvailability,doctorList,loginDoctor,appointmentsDoctor,appointmentCancel,appointmentComplete,prescription}

@@ -8,6 +8,7 @@ import appointmentModel from "../models/appointmentModel.js";
 import razorpay from "razorpay";
 import Feedback from "../models/feedbackModel.js";
 import Meeting from "../models/meetingModel.js";
+import prescriptionModel from "../models/prescriptionModel.js";
 
 const registerUser = async (req, res) => {
   try {
@@ -216,6 +217,15 @@ const addFeedback = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
+const getPrescription = async(req,res)=>{
+  try {
+    const prescriptions = await prescriptionModel.find({ userId: req.params.userId }).populate("docId", "name");
+    res.status(200).json(prescriptions);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching prescriptions", error });
+  }
+}
 const razorpayInstance = new razorpay({
   key_id: process.env.key_id,
   key_secret: process.env.key_secret,
@@ -231,5 +241,6 @@ export {
   bookAppointment,
   listAppointment,
   cancleAppointment,
-  addFeedback
+  addFeedback,
+  getPrescription
 };
