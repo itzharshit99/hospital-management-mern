@@ -95,19 +95,25 @@ const appointmentCancel = async(req,res)=>{
     res.json({success:false,message:error.message})
   }
 }
-const prescription = async(req,res)=>{
+const prescription = async (req, res) => {
   try {
-    const {docId,userId,prescriptionText} = req.body;
-    const prescription  = new prescriptionModel({
+    const { docId, userId, prescriptionText } = req.body; // Missing fields added
+    console.log(docId);
+    if (!docId || !userId || !prescriptionText) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    const newPrescription = new prescriptionModel({
       docId,
       userId,
-      prescriptionText
+      prescriptionText,
+    });
 
-    })
-    await prescription.save();
-    res.status(201).json({ message: "Prescription sent successfully", prescription });
+    await newPrescription.save();
+    res.status(201).json({ message: "Prescription sent successfully", prescription: newPrescription });
   } catch (error) {
-    res.status(500).json({ message: "Error saving prescription", error });
+    res.status(500).json({ message: "Error saving prescription", error: error.message });
   }
-}
+};
+
 export {changeAvailability,doctorList,loginDoctor,appointmentsDoctor,appointmentCancel,appointmentComplete,prescription}

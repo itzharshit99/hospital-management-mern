@@ -220,8 +220,9 @@ const addFeedback = async (req, res) => {
 
 const getPrescription = async(req,res)=>{
   try {
-    const prescriptions = await prescriptionModel.find({ userId: req.params.userId }).populate("docId", "name");
-    res.status(200).json(prescriptions);
+    const {userId} = req.body;
+    const prescriptions = await prescriptionModel.find({ userId}).populate("docId", "name");
+    res.json({ success: true, prescriptions });
   } catch (error) {
     res.status(500).json({ message: "Error fetching prescriptions", error });
   }

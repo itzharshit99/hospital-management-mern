@@ -12,6 +12,7 @@ const AppContextProvider = (props)=>{
   const [token,setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):false);
   const [userData,setuserData] = useState(false)
   const [appointments, setAppointments] = useState([]);
+  const [prescriptions, setPrescriptions] = useState([]);
   
   const getDoctorsData = async ()=>{
     try {
@@ -71,13 +72,28 @@ const AppContextProvider = (props)=>{
       toast.error("Error fetching appointments");
     }
   };
+  const getPrescriptions = async () => {
+    try {
+      const { data } = await axios.get(backendUrl + "/api/user/get-prescription",{headers:{token}});
+      console.log(data)
+      
+      if (data.success) {
+        setPrescriptions(data.prescriptions);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error("Error fetching prescriptions:", error);
+      toast.error("Error fetching prescriptions");
+    }
+  };
 
 
   const value = {
     doctors,getDoctorsData,
     currencySymbol,token,setToken,
     backendUrl,userData,setuserData,loadUserProfileData,
-    medicalCamps,getMedicalCamps,getAppointments,appointments,setAppointments
+    medicalCamps,getMedicalCamps,getAppointments,appointments,setAppointments,getPrescriptions,prescriptions,setPrescriptions
   }
   useEffect(()=>{
     getDoctorsData()
@@ -97,6 +113,11 @@ const AppContextProvider = (props)=>{
     getAppointments();
   }, []);
   
+  useEffect(() => {
+    if (token) {
+      getPrescriptions();
+    }
+  }, [token])
   
   return (
     <AppContext.Provider value={value}>
