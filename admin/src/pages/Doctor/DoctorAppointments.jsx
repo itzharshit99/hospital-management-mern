@@ -200,7 +200,7 @@ const DoctorAppointments = () => {
             {/* Prescription Button */}
             <button
               onClick={() => setSelectedAppointment(item)}
-              className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
+              className="bg-[#5f6FFF] text-white px-4 py-1 rounded-2xl hover:bg-[#5f6FFF] cursor-pointer "
             >
               Write Prescription
             </button>
