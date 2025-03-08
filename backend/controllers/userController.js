@@ -9,6 +9,7 @@ import razorpay from "razorpay";
 import Feedback from "../models/feedbackModel.js";
 import Meeting from "../models/meetingModel.js";
 import prescriptionModel from "../models/prescriptionModel.js";
+import MedicalCamp from "../models/campModel.js";
 
 const registerUser = async (req, res) => {
   try {
@@ -231,6 +232,31 @@ const razorpayInstance = new razorpay({
   key_id: process.env.key_id,
   key_secret: process.env.key_secret,
 });
+
+
+const sendSMS = async (req,res)=>{
+  try {
+    const { name, location, date } = req.body;
+
+    // Save the camp to the database
+    const newCamp = new MedicalCamp({ name, location, date });
+    await newCamp.save();
+
+    // Fetch all users' phone numbers
+    const users = await User.find({}, { phoneNumber: 1, _id: 0 });
+    const phoneNumbers = users.map((user) => user.phoneNumber).join(","); // Join numbers with a comma
+
+    // Send SMS to all users
+    const message = `New Camp Added: ${name} at ${location} on ${date}. Visit us!`;
+    await sendSMS(phoneNumbers, message);
+
+    res.status(201).json({ message: "Camp added and SMS sent successfully!" });
+  } catch (error) {
+    console.error("Error adding camp:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
 
 const paymentRazorpay = async (req, res) => {};
 
